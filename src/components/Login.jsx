@@ -26,12 +26,17 @@ const Login = () => {
       const nameRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{2,}$/;
       if (!name.match(nameRegex)) {
         validationErrors.name =
-          'Name must have at least 2 characters, one number, and one symbol !';
+          'Name must have at least 2 characters, one number, and one symbol!';
       }
     }
 
     if (email.trim() === '') {
       validationErrors.email = 'Email is required';
+    } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.match(emailRegex)) {
+            validationErrors.email = 'Enter the proper Email id'
+        }
     }
 
     if (password.trim() === '') {
@@ -53,6 +58,8 @@ const Login = () => {
       setErrors(validationErrors);
     }
   };
+
+ 
 
   return (
     <div className='login'>
